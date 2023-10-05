@@ -7,7 +7,7 @@ function Dashboard() {
     <div>
       <h1>Dashboard</h1>
       <p>Hello from the Dashboard</p>
-      {/* <SearchInput /> */}
+      <SearchInput />
       <SearchOutput />
     </div>
   );
