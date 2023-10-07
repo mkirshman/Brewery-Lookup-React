@@ -11,12 +11,6 @@ function SearchInput() {
 
   return (
     <div>
-      {/* <input
-        type="text"
-        placeholder="Enter your search query"
-        value={searchTerm}
-        onChange={handleInputChange}
-      /> */}
       <div>
         <SearchForm />
       </div>
