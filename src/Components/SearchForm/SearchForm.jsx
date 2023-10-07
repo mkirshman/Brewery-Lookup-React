@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../AppContext/AppContext';
 import SearchTable from '../SearchTable/SearchTable'; // Import the SearchTable component
+import { fetchData } from '../ApiConnect/ApiConnect';
 import { useAsyncDebounce } from 'react-table';
 import './SearchForm.scss';
 
@@ -18,11 +19,19 @@ function SearchForm() {
   const [sortDirection, setSortDirection] = useState('asc'); // Default value
 
   const handleSearch = () => {
-    // Implement your search logic here and update searchResults in the context
-    const results = [
-      // Replace with your actual search results
-    ];
-    setSearchResults(results);
+    const requestData = {
+        searchTerm,
+        location,
+        selectedType,
+        selectedDistance,
+        selectedIds,
+        selectedName,
+        resultsPerPage,
+        sortDirection,
+      };
+  
+      // Call the fetchData function from ApiConnect component
+      fetchData(requestData, setSearchResults);
   };
 
   // Use a debounced function for search term input

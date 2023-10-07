@@ -7,10 +7,10 @@ export const AppProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]); // Ensure this is set correctly
 
   const initialContext = {
-    searchTerm: '',
-    setSearchTerm: '',
-    searchResults: [],
-    setSearchResults: [],
+    searchTerm,
+    setSearchTerm,
+    searchResults,
+    setSearchResults,
   };
 
   return (
