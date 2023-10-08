@@ -8,7 +8,7 @@ function Dashboard() {
       <h1>Dashboard</h1>
       <p>Hello from the Dashboard</p>
       <SearchInput />
-      <SearchOutput />
+
     </div>
   );
 }
