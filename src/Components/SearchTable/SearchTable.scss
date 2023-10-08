@@ -1,0 +1,79 @@
+// Apply styles to the table container
+.table-container {
+    width: 100%;
+    margin: 20px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  
+    // Apply styles to the table itself
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+  
+      // Style table headers
+      th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+      }
+  
+      // Style table rows
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+  
+      // Highlight table rows on hover
+      tr:hover {
+        background-color: #f9f9f9;
+      }
+    }
+  
+    // Apply pagination styles (if applicable)
+    .pagination {
+      margin-top: 10px;
+      text-align: center;
+  
+      // Style pagination links
+      a {
+        display: inline-block;
+        margin: 0 5px;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 3px;
+        cursor: pointer;
+  
+        // Style active page link
+        &.active {
+          background-color: #0056b3;
+        }
+  
+        // Style disabled page link
+        &.disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+      }
+    }
+  
+    // Apply styles to the search input (if applicable)
+    .search-input {
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+  
+    // Apply styles to other form fields (location, filters, etc.) as needed
+  }
+  

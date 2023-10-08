@@ -1,112 +1,49 @@
-import React from 'react';
-import { useTable } from 'react-table';
+import React, { useContext } from 'react';
+import { AppContext } from '../AppContext/AppContext';
 
-function SearchTable({ data }) {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'ID',
-        accessor: 'id',
-      },
-      {
-        Header: 'Name',
-        accessor: 'name',
-      },
-      {
-        Header: 'City',
-        accessor: 'city',
-      },
-      {
-        Header: 'Country',
-        accessor: 'country',
-      },
-      {
-        Header: 'Phone',
-        accessor: 'phone',
-      },
-      {
-        Header: 'State',
-        accessor: 'state',
-      },
-      {
-        Header: 'Street',
-        accessor: 'street',
-      },
-      {
-        Header: 'Brewery Type',
-        accessor: 'brewery_type',
-      },
-      {
-        Header: 'Address 1',
-        accessor: 'address_1',
-      },
-      {
-        Header: 'Address 2',
-        accessor: 'address_2',
-      },
-      {
-        Header: 'Address 3',
-        accessor: 'address_3',
-      },
-      {
-        Header: 'State/Province',
-        accessor: 'state_province',
-      },
-      {
-        Header: 'Postal Code',
-        accessor: 'postal_code',
-      },
-      {
-        Header: 'Website URL',
-        accessor: 'website_url',
-      },
-    ],
-    []
-  );
+function SearchTable() {
+  const { searchResults } = useContext(AppContext);
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
-    columns,
-    data,
-  });
+//   Ensure that searchResults is an array of objects
+  if (!Array.isArray(searchResults) || searchResults.length === 0) {
+    return null; // Render nothing if searchResults is not an array or is empty
+  }
 
   return (
-    <table {...getTableProps()} className="table-container">
+    <table>
       <thead>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-            ))}
+        <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Brewery Type</th>
+          <th>Postal Code</th>
+          <th>Website</th>
+        </tr>
+      </thead>
+      <tbody>
+        {searchResults.map((brewery, index) => (
+          <tr key={index}>
+            <td>{brewery[0]}</td>
+            <td>{brewery[1]}</td>
+            <td>{brewery[2]}</td>
+            <td>{brewery[3]}</td>
+            <td>{brewery[4]}</td>
+            <td>{brewery[5]}</td>
+            <td>{brewery[6]}</td>
+            <td>
+              {brewery[7] !== 'N/A' ? (
+                <a href={brewery[7]} target="_blank" rel="noopener noreferrer">
+                  {brewery[7]}
+                </a>
+              ) : (
+                'N/A'
+              )}
+            </td>
           </tr>
         ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => {
-                return (
-                  <td {...cell.getCellProps()}>
-                    {typeof cell.value === 'object' ? (
-                      // If the cell value is an object, render its properties individually
-                      Object.values(cell.value).join(', ')
-                    ) : (
-                      // Otherwise, render the cell value directly
-                      cell.render('Cell')
-                    )}
-                  </td>
-                );
-              })}
-            </tr>
-          );
-        })}
       </tbody>
     </table>
   );
